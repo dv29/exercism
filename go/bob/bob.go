@@ -18,7 +18,7 @@ func Hey(remark string) string {
 	// Then remove all the stock comments.
 	// They're here to help you get started but they only clutter a finished solution.
 	// If you leave them in, reviewers may protest!
-  remark = string(regexp.MustCompile(`[\n \r\t]+`).ReplaceAll([]byte(remark), []byte("")))
+  remark = strings.TrimSpace(remark)
 
   if remark == "" {
     return "Fine. Be that way!"
