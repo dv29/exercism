@@ -18,10 +18,8 @@ func Open(amt int64) *Account {
 func (act *Account) Balance() (int64, bool) {
 	act.mux.Lock()
 	defer act.mux.Unlock()
-	if !act.isClosed {
-		return act.balance, true
-	}
-	return act.balance, false
+
+	return act.balance, !act.isClosed
 }
 
 func (act *Account) Close() (int64, bool) {
