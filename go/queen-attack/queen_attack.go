@@ -2,7 +2,6 @@ package queenattack
 
 import (
 	"errors"
-	"math"
 )
 
 func CanQueenAttack(w, b string) (bool, error) {
@@ -28,14 +27,9 @@ func CanQueenAttack(w, b string) (bool, error) {
 		return false, errors.New("invalid placement")
 	}
 
-	if bRow != wRow && bCol != wCol {
-		theta := math.Atan(float64(bCol-wCol) / float64(bRow-wRow))
-		theta *= 180 / 3.14
-		theta = math.Round(theta)
-		if theta != 45 && theta != -45 {
-			return false, nil
-		}
+	if bRow == wRow || bCol == wCol || (bRow - bCol) == (wRow - wCol) || (bRow + bCol) == (wRow + wCol) {
+		return true, nil
 	}
 
-	return true, nil
+	return false, nil
 }
